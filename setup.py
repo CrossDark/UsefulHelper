@@ -10,6 +10,7 @@ setup(
     zip_safe=False,
     platforms=['Linux'],
     install_requires=['PyQt5'],
+    python_requires='>=3.9',
     description='A new Python DB',
     long_description="""
                     A DB that human can read
@@ -17,5 +18,6 @@ setup(
                                     """,
     license='GIL',
     url='https://github.com/CleverCreater/UNKnownDB',
-    classifiers=[]
+    classifiers=[],
+    scripts=['./start.py']
 )
