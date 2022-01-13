@@ -24,5 +24,9 @@ ext/mkinstalldirs
 ext/run-tests.php
 ext/.deps
 ext/libtool
+# Build
 build/
 UsefulHelper.egg-info/
+# Setup & Pack
+setup.py
+pack.py
