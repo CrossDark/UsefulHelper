@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='UNKnownDB',
-    version='1.6.5',
+    name='UsefulHelper',
+    version='1.6.8',
     author='CleaverCreator',
     author_email='liuhanbo333@icloud.com',
     packages=find_packages(),
@@ -11,13 +11,12 @@ setup(
     platforms=['Linux'],
     install_requires=['PyQt5'],
     python_requires='>=3.9',
-    description='A new Python DB',
+    description='Some useful tools',
     long_description="""
-                    A DB that human can read
-                    Use Unknown Describe Language
+                    Seeing GitHub
                                     """,
-    license='GIL',
-    url='https://github.com/CleverCreater/UNKnownDB',
+    license='MIT',
+    url='https://github.com/CleverCreater/UsefulHelper',
     classifiers=[],
     scripts=['./start.py']
 )

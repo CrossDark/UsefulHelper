@@ -1,0 +1,12 @@
+README.md
+setup.py
+./start.py
+UsefulHelper/__init__.py
+UsefulHelper/cli.py
+UsefulHelper.egg-info/PKG-INFO
+UsefulHelper.egg-info/SOURCES.txt
+UsefulHelper.egg-info/dependency_links.txt
+UsefulHelper.egg-info/not-zip-safe
+UsefulHelper.egg-info/requires.txt
+UsefulHelper.egg-info/top_level.txt
+UsefulHelper/Tools/__init__.py

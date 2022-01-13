@@ -1,0 +1,13 @@
+Metadata-Version: 1.2
+Name: UsefulHelper
+Version: 1.6.8
+Summary: Some useful tools
+Home-page: https://github.com/CleverCreater/UsefulHelper
+Author: CleaverCreator
+Author-email: liuhanbo333@icloud.com
+License: MIT
+Description: 
+                            Seeing GitHub
+                                            
+Platform: Linux
+Requires-Python: >=3.9
