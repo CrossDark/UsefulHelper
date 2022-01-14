@@ -9,25 +9,6 @@ def start(get):
     with open('./manage.py', 'w') as manage:
         manage.write("""
 from UsefulHelper.manager import *
-import click
-
-manage_list = ['setup']
-
-
-@click.command()
-@click.option(
-    '--get', prompt='manage>>'
-)
-def main(get):
-    split = get.split(' ')
-    first = split[0]
-    if first in manage_list:
-        info = eval(first)(split.remove(first))
-        print(info)
-    else:
-        print(get + " isn't support")
-        get = None
-        main(get)
 
 
 if __name__ == '__main__':
@@ -50,11 +31,16 @@ def main(things):
     if first in key_list:
         info = eval(first)(split.remove(first))
         print(info)
+        things = None
+        main(things)
     else:
         print(things + " isn't support")
         things = None
         main(things)
 
 
-if __name__ != '__main__':
+if __name__ == '__main__':
+    print('Debugging')
+    main()
+else:
     main()
