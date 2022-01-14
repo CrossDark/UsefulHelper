@@ -5,8 +5,8 @@ import os
 
 
 class Setup:
-    def __init__(self, path: str):
-        self.path = path
+    def __init__(self, path:list):
+        self.path = path[0]
 
     def setup(self):
         if os.path.exists(self.path + '/setup.py'):
