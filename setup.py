@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='UsefulHelper',
-    version='1.6.8',
+    version='1.6.9',
     author='CleaverCreator',
     author_email='liuhanbo333@icloud.com',
     packages=find_packages(),

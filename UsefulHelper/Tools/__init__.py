@@ -5,7 +5,7 @@ import os
 
 
 class Setup:
-    def __init__(self, path:list):
+    def __init__(self, path: list):
         self.path = path[0]
 
     def setup(self):

@@ -13,4 +13,6 @@ def setup(get):
 
 
 def pack(get):
-    return get
+    task = Setup(path=get)
+    task.pack()
+    return 'Down'
