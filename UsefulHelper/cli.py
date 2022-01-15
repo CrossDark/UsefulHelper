@@ -1,8 +1,8 @@
 #!/usr/bin/python3.9 cli.py
 import click
-# from UsefulHelper import Start
+from UNKnownDB.DB import LightDB
 
-key_list = ['start', 'setup', 'pack', 'build']
+key_list = ['start']
 
 
 def start(get):
@@ -17,7 +17,13 @@ if __name__ == '__main__':
 else:
     main()
         """)
-    return get
+    with LightDB.Data(path='./info', name=get) as db:
+        print(db)
+    return 'Done'
+
+
+def stop():
+    exit()
 
 
 @click.command()
@@ -29,10 +35,12 @@ def main(things):
     split = things.split(' ')
     first = split[0]
     if first in key_list:
-        info = eval(first)(split.remove(first))
+        info = eval(first)(split[1])
         print(info)
         things = None
         main(things)
+    elif first == 'stop':
+        stop()
     else:
         print(things + " isn't support")
         things = None

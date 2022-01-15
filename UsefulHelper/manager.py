@@ -6,6 +6,7 @@ import os
 import click
 
 from UsefulHelper.Tools import Setup
+from UsefulHelper.Project import *
 
 key_list = ['stop']
 manage_list = ['setup', 'pack', 'clean']
@@ -54,3 +55,11 @@ def clean(get):
 
 def stop():
     exit()
+
+
+def build(_type_, temple):
+    """
+    build
+    """
+    if _type_ in type_list:
+        eval(_type_ + '.' + temple).Build()
