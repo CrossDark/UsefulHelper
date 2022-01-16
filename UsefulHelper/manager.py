@@ -5,10 +5,9 @@ import os
 
 import click
 
-from UsefulHelper.Tools import Setup
-from UsefulHelper.Project import *
+from UsefulHelper.Tools import Setup, Build
 
-key_list = ['stop']
+key_list = ['prepare']
 manage_list = ['setup', 'pack', 'clean']
 
 
@@ -25,7 +24,11 @@ def main(get):
         get = None
         main(get)
     elif first in key_list:
-        eval(first)
+        eval(first)()
+        get = None
+        main(get)
+    elif first == 'stop':
+        exit(0)
     else:
         print(get + " isn't support")
         get = None
@@ -53,13 +56,22 @@ def clean(get):
             os.remove(i)
 
 
-def stop():
-    exit()
+def prepare():
+    # Describe
+    make_dir('./Describe')
+    open('./Describe/grammar.usg', 'w').close()
+    # Build
+    make_dir('Build')
+    print('Down')
 
 
-def build(_type_, temple):
+def make_dir(name):
+    os.mkdir(name)
+    open('./' + name + '/__init__.py', 'w').close()
+
+
+def build():
     """
     build
     """
-    if _type_ in type_list:
-        eval(_type_ + '.' + temple).Build()
+    Build()

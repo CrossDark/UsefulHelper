@@ -2,6 +2,7 @@
 Some helpful tools
 """
 import os
+import re
 
 
 class Setup:
@@ -62,3 +63,29 @@ db = LocalDB('')
 db.delete_all('./dist')
 
                 """)
+
+
+class Node:
+    # 初始化一个节点
+    def __init__(self, name=None, val=None):
+        self.name = name  # 节点值
+        self.val = val
+        self.l_child = []  # 子节点列表
+
+    # 添加子节点
+    def add_child(self, node):
+        self.l_child.append(node)
+
+
+class Build:
+    def __init__(self):
+        super(Build, self).__init__()
+        with open('./Describe/grammar.usg') as describe:
+            self.Describe = describe.readlines()
+        for i in self.Describe:
+            if re.findall('~(.+?)~', i) is not []:
+                self.Describe.remove(i)
+        for i in self.Describe:
+            split = re.findall('(.+?):(.+?)', i)
+            print(split)
+            Node(split[0][0], split[0][1])

@@ -1,8 +1,8 @@
 """
 Project
 """
-type_list = ['SQL', 'GUI']
-project = {
-    'SQL': ['SQLite', 'UNKnownDB'],
-    'GUI': ['PyQt5']
-}
+
+
+class Definition:
+    def __init__(self):
+        super(Definition, self).__init__()

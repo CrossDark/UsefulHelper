@@ -1,4 +1,6 @@
 #!/usr/bin/python3.9 cli.py
+import os
+
 import click
 from UNKnownDB.DB import LightDB
 
@@ -6,9 +8,18 @@ key_list = ['start']
 
 
 def start(get):
-    with open('./manage.py', 'w') as manage:
-        manage.write("""
+    try:
+        os.mkdir('./' + get)
+    except FileExistsError:
+        pass
+    open('./' + get + '/__init__.py', 'w').close()
+    with open('./' + get + '/manage.py', 'w') as manage:
+        manage.write(
+            """
 from UsefulHelper.manager import *
+
+
+# build()
 
 
 if __name__ == '__main__':
@@ -16,8 +27,9 @@ if __name__ == '__main__':
     main()
 else:
     main()
-        """)
-    with LightDB.Data(path='./info', name=get) as db:
+        """
+        )
+    with LightDB.Data(path='./' + get + '/info', name=get) as db:
         print(db)
     return 'Done'
 
