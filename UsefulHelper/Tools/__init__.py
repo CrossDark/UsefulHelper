@@ -83,9 +83,15 @@ class Build:
         with open('./Describe/grammar.usg') as describe:
             self.Describe = describe.readlines()
         for i in self.Describe:
-            if re.findall('~(.+?)~', i) is not []:
-                self.Describe.remove(i)
-        for i in self.Describe:
+            if re.findall('~(.+?)~', i):
+                continue
             split = re.findall('(.+?):(.+?)', i)
             print(split)
+            try:
+                level = re.search('[^ ]', i).span()[0]//4
+            except TypeError:
+                level = 0
+            except AttributeError:
+                level = 0
+            print(level)
             Node(split[0][0], split[0][1])
