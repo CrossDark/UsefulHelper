@@ -24,23 +24,27 @@ class Build:
 
     def split(self, data):
         self.Leval = 0
-        leval = 0
+        leval = re.search('[^ ]', data[0]).span()[0]//4
+        # leval = 0
         final = []
         doing = []
         son = False
+        re_split = []
         for datum in data:
             if re.findall('~(.+?)~', datum):
                 continue
             split = re.findall('(.+?):(.+?)', datum)
-            print(split)
             doing.append(split[0][0] + ':' + split[0][1])
             if re.search('[^ ]', datum).span()[0]//4 < leval:
                 break
             elif re.search('[^ ]', datum).span()[0]//4 > leval:
                 son = True
+                re_split.append(datum.replace('\n', ''))
+            else:
+                final.append(datum.replace(' ', '').replace('\n', ''))
             leval = re.search('[^ ]', datum).span()[0]//4
         if son:
-            final.append(self.split(final))
+            final.append(self.split(re_split))
         return final
 
     def add(self, data):

@@ -75,7 +75,3 @@ def build():
     build
     """
     build_ = TreeBuild()
-    print(0)
-    print(build_.Level0)
-    print(build_.Level1)
-    print(build_.Level2)
