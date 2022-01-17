@@ -93,5 +93,8 @@ class Build:
                 level = 0
             except AttributeError:
                 level = 0
-            print(level)
-            Node(split[0][0], split[0][1])
+            try:
+                exec('self.Level' + str(level) + '["' + split[0][0] + '"] = "' + split[0][1] + '"')
+            except AttributeError:
+                exec("self.Level" + str(level) + " = {}")
+                exec('self.Level' + str(level) + '["' + split[0][0] + '"] = "' + split[0][1] + '"')

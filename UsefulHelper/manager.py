@@ -74,4 +74,6 @@ def build():
     """
     build
     """
-    Build()
+    build_ = Build()
+    print(0)
+    print(build_.Level0)
