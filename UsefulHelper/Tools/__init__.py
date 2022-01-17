@@ -77,24 +77,24 @@ class Node:
         self.l_child.append(node)
 
 
-class Build:
+class TreeBuild:
     def __init__(self):
-        super(Build, self).__init__()
+        super(TreeBuild, self).__init__()
+        self.Key = str
+        self.Value = str
         with open('./Describe/grammar.usg') as describe:
             self.Describe = describe.readlines()
-        for i in self.Describe:
-            if re.findall('~(.+?)~', i):
-                continue
-            split = re.findall('(.+?):(.+?)', i)
-            print(split)
-            try:
-                level = re.search('[^ ]', i).span()[0]//4
-            except TypeError:
-                level = 0
-            except AttributeError:
-                level = 0
-            try:
-                exec('self.Level' + str(level) + '["' + split[0][0] + '"] = "' + split[0][1] + '"')
-            except AttributeError:
-                exec("self.Level" + str(level) + " = {}")
-                exec('self.Level' + str(level) + '["' + split[0][0] + '"] = "' + split[0][1] + '"')
+        self.Iter = 0
+        self.build()
+        with open('./Describe/grammar.ust', 'w') as tree:
+            tree.write('')
+
+    def build(self, level=0):
+        get = self.Describe[self.Iter]
+        if re.findall('~(.+?)~', get):
+            pass
+        split = re.findall('(.+?):(.+?)', get)
+        if level > re.search('[^ ]', get).span()[0]//4:
+            pass
+        self.Key = split[0][0].replace(' ', '')
+        self.Value = split[0][1]

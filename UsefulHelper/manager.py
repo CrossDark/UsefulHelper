@@ -5,7 +5,7 @@ import os
 
 import click
 
-from UsefulHelper.Tools import Setup, Build
+from UsefulHelper.Tools import Setup, TreeBuild
 
 key_list = ['prepare']
 manage_list = ['setup', 'pack', 'clean']
@@ -74,6 +74,8 @@ def build():
     """
     build
     """
-    build_ = Build()
+    build_ = TreeBuild()
     print(0)
     print(build_.Level0)
+    print(build_.Level1)
+    print(build_.Level2)
