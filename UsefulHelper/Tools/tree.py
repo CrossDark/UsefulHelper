@@ -5,16 +5,6 @@ Grammar Tree
 import re
 
 
-tree = {}
-
-
-class Node:
-    def __init__(self, name):
-        super(Node, self).__init__()
-        global tree
-        exec('tree[' + name + ']')
-
-
 class Build:
     def __init__(self):
         super(Build, self).__init__()
@@ -42,17 +32,41 @@ class Build:
                 doing.append([i.replace('\n', '').replace(' ', ''), level, False])
             else:
                 raise TabError
-            print(self.Leval)
         self.Describe = final
 
-    def build(self, father='~', data=None):
-        doing = []
-        final = {}
+    def tree(self, data=None):
         if data is None:
             data = self.Describe
-        """Iter"""
+        doing = []
+        final = []
+        child = False
         for datum in data:
             if datum[2]:
-                break
+                final.append(doing)
+                child = True
+                doing = []
+            elif not datum[2]:
+                doing.append(datum)
+            elif child:
+                final.append(self.tree(doing))
+            else:
+                final.append(datum)
+        return final
+
+    def build(self, father=None, data=None):
+        if father is None:
+            father = self.Describe[0]
+        doing = []
+        final = {}
+        child = False
+        for datum in self.Describe:
+            if datum[2]:
+                child = True
+            elif child:
+                doing.append(datum[0])
+            elif not datum[2]:
+                final[''] = doing
+                doing = []
             else:
                 raise TabError
+        return final
