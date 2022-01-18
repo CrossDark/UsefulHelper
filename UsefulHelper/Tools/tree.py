@@ -35,21 +35,30 @@ class Build:
                 raise TabError
         self.Describe = final
 
-    def split(self):
+    def split(self, data=None):
+        if data is None:
+            data = self.Describe
         self.state = None
+        son = False
         doing = []
         final = []
-        for i in self.Describe:
+        for i in data:
             state = i[2]
+            if self.state:
+                if state:
+                    print('son')
+                    son = True
+                else:
+                    print('not')
+                    doing.append(i)
             if state:
                 doing = [i]
                 final.append(doing)
                 self.state = True
-            elif self.state:
-                if state:
-                    doing.append(self.split())
-                else:
-                    doing.append(i)
+                print(self.state)
+        if son:
+            print(doing)
+            doing.append(self.split(data=doing))
         return final
 
     def tree(self, data=None):
