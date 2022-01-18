@@ -8,6 +8,7 @@ import re
 class Build:
     def __init__(self):
         super(Build, self).__init__()
+        self.state = None
         self.Leval = 0
         self.Describe = []
         doing = []
@@ -34,39 +35,25 @@ class Build:
                 raise TabError
         self.Describe = final
 
+    def split(self):
+        self.state = None
+        doing = []
+        final = []
+        for i in self.Describe:
+            state = i[2]
+            if state:
+                doing = [i]
+                final.append(doing)
+                self.state = True
+            elif self.state:
+                if state:
+                    doing.append(self.split())
+                else:
+                    doing.append(i)
+        return final
+
     def tree(self, data=None):
         if data is None:
             data = self.Describe
-        doing = []
-        final = []
-        child = False
-        for datum in data:
-            if datum[2]:
-                final.append(doing)
-                child = True
-                doing = []
-            elif not datum[2]:
-                doing.append(datum)
-            elif child:
-                final.append(self.tree(doing))
-            else:
-                final.append(datum)
-        return final
-
-    def build(self, father=None, data=None):
-        if father is None:
-            father = self.Describe[0]
-        doing = []
-        final = {}
-        child = False
-        for datum in self.Describe:
-            if datum[2]:
-                child = True
-            elif child:
-                doing.append(datum[0])
-            elif not datum[2]:
-                final[''] = doing
-                doing = []
-            else:
-                raise TabError
-        return final
+            print(data)
+        pass
