@@ -20,17 +20,17 @@ class Build:
             if re.findall('~(.+?)~', i):
                 continue
             elif level > self.Leval:
-                pre = doing[-1][0:2]
-                doing[-1] = pre + [True]
-                doing.append([i.replace('\n', '').replace(' ', ''), level, False])
+                pre = doing[-1][0]
+                doing[-1] = [pre] + [level]
+                doing.append([i.replace('\n', '').replace(' ', ''), level])
                 self.Leval = level
             elif level < self.Leval:
-                doing.append([i.replace('\n', '').replace(' ', ''), level, False])
+                doing.append([i.replace('\n', '').replace(' ', ''), level])
                 final += doing
                 doing = []
                 self.Leval = 0
             elif level == self.Leval:
-                doing.append([i.replace('\n', '').replace(' ', ''), level, False])
+                doing.append([i.replace('\n', '').replace(' ', ''), level])
             else:
                 raise TabError
         self.Describe = final
@@ -39,26 +39,27 @@ class Build:
         if data is None:
             data = self.Describe
         self.state = None
-        son = False
+        self.Leval = 0
+        self.Describe = []
         doing = []
         final = []
         for i in data:
-            state = i[2]
-            if self.state:
-                if state:
-                    print('son')
-                    son = True
-                else:
-                    print('not')
-                    doing.append(i)
-            if state:
-                doing = [i]
-                final.append(doing)
-                self.state = True
-                print(self.state)
-        if son:
+            level = i[1]
             print(doing)
-            doing.append(self.split(data=doing))
+            if level > self.Leval:
+                # pre = doing[-1][0]
+                # doing[-1] = [pre] + [level]
+                doing.append([i[0], level - 1])
+                self.Leval = level
+            elif level < self.Leval:
+                doing.append([i[0], level - 1])
+                final.append(doing)
+                doing = []
+                self.Leval = 0
+            elif level == self.Leval:
+                doing.append([i[0], level - 1])
+            else:
+                raise TabError
         return final
 
     def tree(self, data=None):
