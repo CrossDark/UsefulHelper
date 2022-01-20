@@ -34,7 +34,6 @@ class Tree:
             describe_line = describe.readlines()
         for i in describe_line:
             level = re.search('[^ ]', i).span()[0] // 4
-            print(level)
             if re.findall('~(.+?)~', i):
                 continue
             elif level > self.Leval:
@@ -58,7 +57,7 @@ class Tree:
             split = i[0].split(':')
             self.Dict[split[0]] = i[1:3]
 
-    def tree(self, leveled=0, father=Node('~'), data=None):
+    def tree(self, leveled=0, father='~', data=None):
         doing = {}
         final = {}
         son = False
@@ -66,10 +65,17 @@ class Tree:
             data = self.Dict
         for k, v in data.items():
             if leveled == v[0]:
-                print(v)
                 if v[1]:
                     final[k] = None
                     doing = {}
+                    father = k
                 else:
-                    final[k] = v
+                    final[k] = True
+            elif leveled > v[0]:
+                print(doing)
+                doing[k] = v
+                print(0)
+            else:
+                doing[k] = v
+                final[father] = self.tree(leveled + 1, father, doing)
         return final
