@@ -34,11 +34,12 @@ class Tree:
             describe_line = describe.readlines()
         for i in describe_line:
             level = re.search('[^ ]', i).span()[0] // 4
+            print(level)
             if re.findall('~(.+?)~', i):
                 continue
             elif level > self.Leval:
-                pre = doing[-1][0]
-                doing[-1] = [pre] + [level, True]
+                pre = doing[-1][0:2]
+                doing[-1] = pre + [True]
                 doing.append([i.replace('\n', '').replace(' ', ''), level, False])
                 self.Leval = level
             elif level < self.Leval:
