@@ -5,9 +5,10 @@ import os
 
 import click
 
-from UsefulHelper.Tools import Setup, TreeBuild
+from UsefulHelper.Tools import Setup
+from UsefulHelper.Tools.tree import Tree
 
-key_list = ['prepare']
+key_list = ['prepare', 'build']
 manage_list = ['setup', 'pack', 'clean']
 
 
@@ -74,4 +75,7 @@ def build():
     """
     build
     """
-    TreeBuild()
+    with open('./Build/grammar.usb', 'w') as out:
+        tree = Tree('./Describe/grammar.usg')
+        tree.dict()
+        out.write(str(tree.value()))

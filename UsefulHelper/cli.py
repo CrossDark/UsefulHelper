@@ -29,6 +29,10 @@ else:
     main()
         """
         )
+    with open('./' + get + '/pack.py', 'w') as pack:
+        pack.write("""
+pass
+        """)
     with LightDB.Data(path='./' + get + '/info', name=get) as db:
         print(db)
     return 'Done'

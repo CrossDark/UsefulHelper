@@ -1,7 +1,7 @@
 """
 Grammar Tree
 """
-# import os
+# -*- coding: UTF-8 -*-
 import re
 
 
@@ -22,16 +22,19 @@ class Node:
 
 
 class Tree:
-    def __init__(self):
+    def __init__(self, path):
         super(Tree, self).__init__()
+        self.Tree = None
         self.Dict = {}
         self.state = None
         self.Leval = 0
         self.Describe = []
         doing = []
         final = []
-        with open('./try/Describe/grammar.usg') as describe:
-            describe_line = describe.readlines()
+        with open(path) as data:
+            describe_line = data.readlines()
+        with open(path) as data:
+            self.Data = data.read()
         for i in describe_line:
             level = re.search('[^ ]', i).span()[0] // 4
             if re.findall('~(.+?)~', i):
@@ -60,7 +63,6 @@ class Tree:
     def tree(self, leveled=0, father='~', data=None):
         doing = {}
         final = {}
-        son = False
         if data is None:
             data = self.Dict
         for k, v in data.items():
@@ -70,7 +72,8 @@ class Tree:
                     doing = {}
                     father = k
                 else:
-                    final[k] = True
+                    print(k)
+                    final[k] = re.findall('[ ]*' + k + ':(.+?)\n', self.Data)[0]
             elif leveled > v[0]:
                 print(doing)
                 doing[k] = v
@@ -79,3 +82,7 @@ class Tree:
                 doing[k] = v
                 final[father] = self.tree(leveled + 1, father, doing)
         return final
+
+    def value(self):
+        self.Tree = self.tree()
+        return self.Tree
