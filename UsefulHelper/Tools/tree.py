@@ -24,6 +24,7 @@ class Node:
 class Tree:
     def __init__(self):
         super(Tree, self).__init__()
+        self.Dict = {}
         self.state = None
         self.Leval = 0
         self.Describe = []
@@ -51,37 +52,23 @@ class Tree:
                 raise TabError
         self.Describe = final
 
-    def split(self, data=None, leveled=0):
-        if data is None:
-            data = self.Describe
-        self.state = None
-        doing = []
-        final = []
-        son = False
-        for i in data:
-            level = i[1]
-            print(doing)
-            print(final)
-            print('--------------------------')
-            if i[2]:
-                continue
-            if level > leveled:
-                doing.append([i[0:2] + [True]])
-                leveled = level
-            elif level < leveled:
-                doing.append([i[0:2] + [False]])
-                son = True
-            elif level == leveled:
-                doing.append([i[0:2] + [True]])
-            else:
-                raise TabError
-            if son:
-                final.append(self.split(doing, leveled + 1))
-                doing = []
-        return final
+    def dict(self):
+        for i in self.Describe:
+            split = i[0].split(':')
+            self.Dict[split[0]] = i[1:3]
 
-    def tree(self, data=None):
+    def tree(self, leveled=0, father=Node('~'), data=None):
+        doing = {}
+        final = {}
+        son = False
         if data is None:
-            data = self.Describe
-            print(data)
-        pass
+            data = self.Dict
+        for k, v in data.items():
+            if leveled == v[0]:
+                print(v)
+                if v[1]:
+                    final[k] = None
+                    doing = {}
+                else:
+                    final[k] = v
+        return final
