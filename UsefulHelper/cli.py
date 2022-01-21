@@ -1,4 +1,5 @@
 #!/usr/bin/python3.9 cli.py
+# -*- coding: UTF-8 -*-
 import os
 
 import click

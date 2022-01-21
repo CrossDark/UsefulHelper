@@ -1,7 +1,7 @@
+# -*- coding: UTF-8 -*-
 """
 Grammar Tree
 """
-# -*- coding: UTF-8 -*-
 import re
 
 
@@ -72,12 +72,9 @@ class Tree:
                     doing = {}
                     father = k
                 else:
-                    print(k)
                     final[k] = re.findall('[ ]*' + k + ':(.+?)\n', self.Data)[0]
             elif leveled > v[0]:
-                print(doing)
                 doing[k] = v
-                print(0)
             else:
                 doing[k] = v
                 final[father] = self.tree(leveled + 1, father, doing)

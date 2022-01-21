@@ -1,14 +1,21 @@
+# -*- coding: UTF-8 -*-
 """
 The temple of manage
 """
 import os
+import re
 
 import click
+import shutil
 
 from UsefulHelper.Tools import Setup
 from UsefulHelper.Tools.tree import Tree
+from UsefulHelper.Project.App import path
 
-key_list = ['prepare', 'build']
+from UNKnownDB.DB.LightDB import Data
+
+
+key_list = ['prepare', 'build', 'create']
 manage_list = ['setup', 'pack', 'clean']
 
 
@@ -50,17 +57,17 @@ def pack(get):
 
 def clean(get):
     if not get:
-        for i in os.listdir('./'):
-            os.remove(i)
+        shutil.rmtree('./')
     else:
-        for i in get:
-            os.remove(i)
+        shutil.rmtree(get[0])
 
 
 def prepare():
     # Describe
     make_dir('./Describe')
     open('./Describe/grammar.usg', 'w').close()
+    open('./Describe/setting.uss', 'w').close()
+    open('./Describe/function.py', 'w').close()
     # Build
     make_dir('Build')
     print('Down')
@@ -79,3 +86,20 @@ def build():
         tree = Tree('./Describe/grammar.usg')
         tree.dict()
         out.write(str(tree.value()))
+    print('Down')
+
+
+def create():
+    with open('./Describe/function.py') as func:
+        settings = func.read()
+    with open(path) as temple:
+        data = temple.read()
+        write = re.sub("'<def>", settings, data)
+    with open('./Build/app.py', 'w') as final:
+        final.write(write)
+
+
+def db(get):
+    with Data('info.unl') as data:
+        print(data.path)
+        data[get[0]] = get[1]

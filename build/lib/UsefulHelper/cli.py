@@ -1,33 +1,25 @@
 #!/usr/bin/python3.9 cli.py
-import click
-# from UsefulHelper import Start
+import os
 
-key_list = ['start', 'setup', 'pack', 'build']
+import click
+from UNKnownDB.DB import LightDB
+
+key_list = ['start']
 
 
 def start(get):
-    with open('./manage.py', 'w') as manage:
-        manage.write("""
+    try:
+        os.mkdir('./' + get)
+    except FileExistsError:
+        pass
+    open('./' + get + '/__init__.py', 'w').close()
+    with open('./' + get + '/manage.py', 'w') as manage:
+        manage.write(
+            """
 from UsefulHelper.manager import *
-import click
-
-manage_list = ['setup']
 
 
-@click.command()
-@click.option(
-    '--get', prompt='manage>>'
-)
-def main(get):
-    split = get.split(' ')
-    first = split[0]
-    if first in manage_list:
-        info = eval(first)(split.remove(first))
-        print(info)
-    else:
-        print(get + " isn't support")
-        get = None
-        main(get)
+# build()
 
 
 if __name__ == '__main__':
@@ -35,8 +27,19 @@ if __name__ == '__main__':
     main()
 else:
     main()
+        """
+        )
+    with open('./' + get + '/pack.py', 'w') as pack:
+        pack.write("""
+pass
         """)
-    return get
+    with LightDB.Data(path='./' + get + '/info', name=get) as db:
+        print(db)
+    return 'Done'
+
+
+def stop():
+    exit()
 
 
 @click.command()
@@ -48,13 +51,20 @@ def main(things):
     split = things.split(' ')
     first = split[0]
     if first in key_list:
-        info = eval(first)(split.remove(first))
+        info = eval(first)(split[1])
         print(info)
+        things = None
+        main(things)
+    elif first == 'stop':
+        stop()
     else:
         print(things + " isn't support")
         things = None
         main(things)
 
 
-if __name__ != '__main__':
+if __name__ == '__main__':
+    print('Debugging')
+    main()
+else:
     main()

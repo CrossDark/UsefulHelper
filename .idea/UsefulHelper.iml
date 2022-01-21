@@ -13,4 +13,7 @@
   <component name="PackageRequirementsSettings">
     <option name="versionSpecifier" value="大于或等于 (&gt;=x.y.z)" />
   </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="py.test" />
+  </component>
 </module>
