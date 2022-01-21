@@ -85,6 +85,7 @@ def build():
     with open('./Build/grammar.usb', 'w') as out:
         tree = Tree('./Describe/grammar.usg')
         tree.dict()
+        print(tree.Describe)
         out.write(str(tree.value()))
     print('Down')
 
@@ -94,7 +95,7 @@ def create():
         settings = func.read()
     with open(path) as temple:
         data = temple.read()
-        write = re.sub("'<def>", settings, data)
+        write = re.sub("'<def>'", settings, data)
     with open('./Build/app.py', 'w') as final:
         final.write(write)
 
