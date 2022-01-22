@@ -9,6 +9,8 @@ key_list = ['start']
 
 
 def start(get):
+    if not get:
+        get = ''
     try:
         os.mkdir('./' + get)
     except FileExistsError:
@@ -20,20 +22,13 @@ def start(get):
 from UsefulHelper.manager import *
 
 
-# build()
-
-
 if __name__ == '__main__':
-    print('Debugging')
+    print('Developing')
     main()
 else:
     main()
         """
         )
-    with open('./' + get + '/pack.py', 'w') as pack:
-        pack.write("""
-pass
-        """)
     with LightDB.Data(path='./' + get + '/info', name=get) as db:
         print(db)
     return 'Done'

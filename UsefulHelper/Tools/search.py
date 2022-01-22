@@ -14,7 +14,7 @@ class Search:
         try:
             answer = data[things[0]]
         except KeyError:
-            exit()
+            print(things[0] + ' not find')
         if type(answer) == dict:
             return self.find(answer, things[1:])
         else:

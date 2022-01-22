@@ -1,4 +1,5 @@
 #!/usr/bin/python3.9 cli.py
+# -*- coding: UTF-8 -*-
 import os
 
 import click
@@ -8,6 +9,8 @@ key_list = ['start']
 
 
 def start(get):
+    if not get:
+        get = ''
     try:
         os.mkdir('./' + get)
     except FileExistsError:
@@ -19,11 +22,8 @@ def start(get):
 from UsefulHelper.manager import *
 
 
-# build()
-
-
 if __name__ == '__main__':
-    print('Debugging')
+    print('Developing')
     main()
 else:
     main()

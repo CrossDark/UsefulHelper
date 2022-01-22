@@ -4,9 +4,8 @@ DSL APP
 import click
 from UsefulHelper.Tools.search import Search
 
-name = ''
+name: str = ''
 path = __file__
-
 
 '<def>'
 
@@ -24,4 +23,4 @@ def main(get: str):
 if __name__ == '__main__':
     main()
 else:
-    pass
+    print(__name__)

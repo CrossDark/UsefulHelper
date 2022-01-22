@@ -3,6 +3,7 @@
 Grammar Tree
 """
 import re
+from UsefulHelper import BuildError
 
 
 class Node:
@@ -52,7 +53,7 @@ class Tree:
             elif level == self.Leval:
                 doing.append([i.replace('\n', '').replace(' ', ''), level, False])
             else:
-                raise TabError
+                raise BuildError
         self.Describe = final
 
     def dict(self):

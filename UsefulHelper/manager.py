@@ -85,7 +85,7 @@ def build():
     with open('./Build/grammar.usb', 'w') as out:
         tree = Tree('./Describe/grammar.usg')
         tree.dict()
-        print(tree.Describe)
+        print(tree.Tree)
         out.write(str(tree.value()))
     print('Down')
 
@@ -98,6 +98,7 @@ def create():
         write = re.sub("'<def>'", settings, data)
     with open('./Build/app.py', 'w') as final:
         final.write(write)
+    print('Down')
 
 
 def db(get):
