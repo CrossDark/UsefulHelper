@@ -1,11 +1,12 @@
 # UsefulTools
 >A simple python DSL tool
+
 > Easy and Fast 
 ## How to use
 1. start
-```python
-from UsefulHelper import cli
-print(cli.key_list)
+```shell
+UsefulHelper start
+UsefulHelper stop
 ```
 ```shell
 python entry.py start
@@ -16,7 +17,7 @@ python manage.py prepare
 ```
 3. write grammar and function
 ```markdown
-> grammar.usg 
+grammar.usg 
 example:none
     info:info()
     things:+
@@ -24,7 +25,6 @@ example:none
         id:id_()
 end:end()
 ```
-
 ```python
 name = 'example'
 

@@ -34,6 +34,10 @@ else:
     return 'Done'
 
 
+def help_():
+    print('')
+
+
 def stop():
     exit()
 
@@ -60,7 +64,8 @@ def main(things):
 
 
 if __name__ == '__main__':
-    print('Debugging')
+    print('Welcome to UsefulHelper')
+    print('Seeing https://github.com/')
     main()
 else:
     main()

@@ -13,6 +13,7 @@ UsefulHelper.egg-info/requires.txt
 UsefulHelper.egg-info/top_level.txt
 UsefulHelper/Project/__init__.py
 UsefulHelper/Project/App/__init__.py
+UsefulHelper/Project/Temple/__init__.py
 UsefulHelper/Tools/__init__.py
 UsefulHelper/Tools/search.py
 UsefulHelper/Tools/tree.py

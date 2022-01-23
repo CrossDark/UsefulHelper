@@ -29,10 +29,6 @@ else:
     main()
         """
         )
-    with open('./' + get + '/pack.py', 'w') as pack:
-        pack.write("""
-pass
-        """)
     with LightDB.Data(path='./' + get + '/info', name=get) as db:
         print(db)
     return 'Done'
@@ -64,7 +60,8 @@ def main(things):
 
 
 if __name__ == '__main__':
-    print('Debugging')
+    print('Welcome to UsefulHelper')
+    print('Seeing https://github.com/')
     main()
 else:
     main()

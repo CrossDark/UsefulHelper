@@ -13,8 +13,6 @@ with open('./setup.py', 'r+') as setup:
     writing = read.replace(find[0], "'" + num[0] + '.' + num[1] + '.' + num[2] + "'")
     setup.write(writing[:-1])
 os.system('python3 setup.py sdist bdist_wheel')
-print('\n0')
 os.system('twine upload dist/* --u CleverCreator --p Bitjop-byfbeg-3sazry')
-print('\n0')
 db = LocalDB('')
 db.delete_all('./dist')

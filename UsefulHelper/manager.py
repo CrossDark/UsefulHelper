@@ -102,6 +102,6 @@ def create():
 
 
 def db(get):
-    with Data('info.unl') as data:
+    with Data('./info') as data:
         print(data.path)
         data[get[0]] = get[1]
